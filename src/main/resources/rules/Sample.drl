@@ -1,0 +1,33 @@
+package com.sample
+ 
+import data.Tuote;
+import data.Tuotetyypit;
+ 
+rule "24"
+    when
+        tuote : Tuote( tyyppi == Tuotetyypit.YLEINEN)
+    then
+        System.out.println( "Asetettu yleinen" );
+        //update( m );
+end
+
+rule "14"
+    when 
+        tuote : Tuote( tyyppi == Tuotetyypit.YLEINEN)
+    then
+       
+end
+
+rule "10"
+    when
+        tuote : Tuote( tyyppi == Tuotetyypit.YLEINEN)
+    then
+        
+end
+
+rule "0"
+    when
+        tuote : Tuote( tyyppi == Tuotetyypit.YLEINEN)
+    then
+        
+end
