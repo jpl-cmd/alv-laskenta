@@ -23,6 +23,9 @@ public final class Tuotetyypit {
 	public static final int MAINOS_LEHDET_YHTEISO = 3;
 	
 	
-	
+	public static final int LUOKKA1 = 0;
+	public static final int LUOKKA2 = 1;
+	public static final int LUOKKA3 = 2;
+	public static final int LUOKKA4 = 3;
 
 }
