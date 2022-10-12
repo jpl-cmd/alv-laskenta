@@ -46,6 +46,10 @@ public class AlvRuleTest {
             
             kSession.fireAllRules();
             
+            System.out.println("Tuotteen '" + tuote1.getNimi() + "' hinta (sis. alv) on " + tuote1.getHinta());
+            System.out.println("Tuotteen '" + tuote2.getNimi() + "' hinta (sis. alv) on " + tuote2.getHinta());
+            System.out.println("Tuotteen '" + tuote3.getNimi() + "' hinta (sis. alv) on " + tuote3.getHinta());
+            System.out.println("Tuotteen '" + tuote4.getNimi() + "' hinta (sis. alv) on " + tuote4.getHinta());
             
             
         } catch (Throwable t) {

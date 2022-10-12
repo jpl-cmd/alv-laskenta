@@ -8,16 +8,13 @@ rule "24"
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA1)
     then
         tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.24));
-        System.out.println("Tuotteen '" + tuote.getNimi() + "' hinta (sis. alv) on " + tuote.getHinta());
 end
 
 rule "14"
     when 
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA2)
     then
-    	tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.14));
-        System.out.println("Tuotteen '" + tuote.getNimi() + "' hinta (sis. alv) on " + tuote.getHinta());
-       
+    	tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.14)); 
 end
 
 rule "10"
@@ -25,7 +22,6 @@ rule "10"
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA3)
     then
         tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.1));
-        System.out.println("Tuotteen '" + tuote.getNimi() + "' hinta (sis. alv) on " + tuote.getHinta());
 end
 
 rule "0"
@@ -33,5 +29,4 @@ rule "0"
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA4)
     then
         tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0));
-        System.out.println("Tuotteen '" + tuote.getNimi() + "' hinta (sis. alv) on " + tuote.getHinta());
 end
