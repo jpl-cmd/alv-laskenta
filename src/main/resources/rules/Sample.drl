@@ -2,31 +2,31 @@ package com.sample
  
 import data.Tuote;
 import data.Tuotetyypit;
- 
-rule "24"
+
+rule "Luokka 1: ALV-prosentti 24"
     when
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA1)
     then
-        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.24));
+        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA1_KERROIN));
 end
 
-rule "14"
+rule "Luokka 2: ALV-prosentti 14"
     when 
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA2)
     then
-    	tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.14)); 
+    	tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA2_KERROIN)); 
 end
 
-rule "10"
+rule "Luokka 3: ALV-prosentti 10"
     when
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA3)
     then
-        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0.1));
+        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA3_KERROIN));
 end
 
-rule "0"
+rule "Luokka 4: ALV-prosentti 0"
     when
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA4)
     then
-        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * 0));
+        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA4_KERROIN));
 end
