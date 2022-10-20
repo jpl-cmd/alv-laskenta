@@ -37,50 +37,35 @@ public class DecisionTableTest {
             tuote4.setNimi("V8-moottori");
             tuote4.setTyyppi(Tuotetyypit.MYYNTI_EU_ALV);
             tuote4.setHinta(12959.0);
+            	
+	    // Luodaan uusi lasku ja lisätään tuotteet
+            Lasku lasku = new Lasku();
+            lasku.lisaaTuote(tuote1);
+            lasku.lisaaTuote(tuote2);
+            lasku.lisaaTuote(tuote3);
+            lasku.lisaaTuote(tuote4);
             
-            // Tuotteet annetaan kie-istunnolle
+            // Lasketaan summa ensin ilman ALVia
+            lasku.laskeSumma();
+            
+            System.out.printf("Laskun summa (ei sis. AlVia): %.2f \n",lasku.getSumma());
+            
+            // Tuotteet syötetään sääntömoottoriin, joka laskee uudet hinnat sääntöjen perusteella
             kSession.insert(tuote1);
             kSession.insert(tuote2);
             kSession.insert(tuote3);
             kSession.insert(tuote4);
             
+            // Käynnistetään sääntömoottori
             kSession.fireAllRules();
             
-            System.out.println("Tuotteen '" + tuote1.getNimi() + "' hinta (sis. alv) on " + tuote1.getHinta());
-            System.out.println("Tuotteen '" + tuote2.getNimi() + "' hinta (sis. alv) on " + tuote2.getHinta());
-            System.out.println("Tuotteen '" + tuote3.getNimi() + "' hinta (sis. alv) on " + tuote3.getHinta());
-            System.out.println("Tuotteen '" + tuote4.getNimi() + "' hinta (sis. alv) on " + tuote4.getHinta());
+            // Lasketaan laskun summa uudelleen ALVien kanssa
+            lasku.laskeSumma();
+            
+            System.out.printf("Laskun summa (sis. ALVin): %.2f \n",lasku.getSumma());
             
         } catch (Throwable t) {
             t.printStackTrace();
         }
     }
-
-    public static class Message {
-
-        public static final int HELLO = 0;
-        public static final int GOODBYE = 1;
-
-        private String message;
-
-        private int status;
-
-        public String getMessage() {
-            return this.message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public int getStatus() {
-            return this.status;
-        }
-
-        public void setStatus(int status) {
-            this.status = status;
-        }
-
-    }
-
 }
