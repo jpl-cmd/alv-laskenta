@@ -3,7 +3,9 @@ package com.sample
 import data.Tuote;
 import data.Tuotetyypit;
 
+
 rule "Luokka 1: ALV-prosentti 24"
+ruleflow-group "alvlaskenta"
     when
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA1)
     then
@@ -11,6 +13,7 @@ rule "Luokka 1: ALV-prosentti 24"
 end
 
 rule "Luokka 2: ALV-prosentti 14"
+ruleflow-group "alvlaskenta"
     when 
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA2)
     then
@@ -18,6 +21,7 @@ rule "Luokka 2: ALV-prosentti 14"
 end
 
 rule "Luokka 3: ALV-prosentti 10"
+ruleflow-group "alvlaskenta"
     when
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA3)
     then
@@ -25,6 +29,7 @@ rule "Luokka 3: ALV-prosentti 10"
 end
 
 rule "Luokka 4: ALV-prosentti 0"
+ruleflow-group "alvlaskenta"
     when
         tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA4)
     then

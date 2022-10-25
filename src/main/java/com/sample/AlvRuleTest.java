@@ -36,9 +36,9 @@ public class AlvRuleTest {
             tuote3.setHinta(34.95);
             
             Tuote tuote4 = new Tuote();
-            tuote4.setNimi("V8-moottori");
+            tuote4.setNimi("Artek-jakkara");
             tuote4.setTyyppi(Tuotetyypit.MYYNTI_EU_ALV);
-            tuote4.setHinta(12959.0);
+            tuote4.setHinta(945.0);
             
             // Luodaan uusi lasku ja lisätään tuotteet
             Lasku lasku = new Lasku();
@@ -59,6 +59,7 @@ public class AlvRuleTest {
             kSession.insert(tuote4);
             
             // Käynnistetään sääntömoottori
+            kSession.getAgenda().getAgendaGroup("alvlaskenta").setFocus();
             kSession.fireAllRules();
             
             // Lasketaan laskun summa uudelleen ALVien kanssa

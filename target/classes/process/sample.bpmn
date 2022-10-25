@@ -6,46 +6,64 @@
              xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
              xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
              xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
              xmlns:tns="http://www.jboss.org/drools">
 
-  <process id="com.sample.bpmn.hello" tns:packageName="defaultPackage" name="Hello World" isExecutable="true" processType="Private">
+  <process processType="Private" isExecutable="true" id="com.sample.bpmn.alv" name="ALV-laskuri" tns:packageName="defaultPackage" >
 
     <!-- nodes -->
-    <scriptTask id="_2" name="Hello" >
-      <script>System.out.println("Hello World");</script>
-    </scriptTask>
-    <startEvent id="_1" />
+    <startEvent id="_1"  isInterrupting="true">
+    </startEvent>
     <endEvent id="_3" >
-        <terminateEventDefinition/>
+        <terminateEventDefinition />
     </endEvent>
+    <businessRuleTask id="_jbpm-unique-3" name="Rule" g:ruleFlowGroup="alvlaskenta" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <scriptTask id="_jbpm-unique-7" name="Print" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Prosessi alkaa");</script>
+    </scriptTask>
 
     <!-- connections -->
-    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
-    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_jbpm-unique-3-_3" sourceRef="_jbpm-unique-3" targetRef="_3" />
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-3" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-3" />
+    <sequenceFlow id="_1-_jbpm-unique-7" sourceRef="_1" targetRef="_jbpm-unique-7" />
 
   </process>
 
   <bpmndi:BPMNDiagram>
-    <bpmndi:BPMNPlane bpmnElement="com.sample.bpmn.hello" >
-      <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="96" y="16" width="80" height="48" />
-      </bpmndi:BPMNShape>
+    <bpmndi:BPMNPlane bpmnElement="com.sample.bpmn.alv" >
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="30" y="22" width="36" height="36" />
+        <dc:Bounds x="10" y="22" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="210" y="22" width="36" height="36" />
+        <dc:Bounds x="430" y="22" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
-        <di:waypoint x="66" y="40" />
-        <di:waypoint x="96" y="40" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
+        <dc:Bounds x="280" y="21" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="128" y="22" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_3" >
+        <di:waypoint x="320" y="45" />
+        <di:waypoint x="454" y="46" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
-        <di:waypoint x="176" y="40" />
-        <di:waypoint x="210" y="40" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-3" >
+        <di:waypoint x="168" y="46" />
+        <di:waypoint x="320" y="45" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_jbpm-unique-7" >
+        <di:waypoint x="34" y="46" />
+        <di:waypoint x="168" y="46" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

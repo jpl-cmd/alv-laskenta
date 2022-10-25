@@ -35,11 +35,11 @@ public class DecisionTableTest {
             tuote3.setHinta(34.95);
             
             Tuote tuote4 = new Tuote();
-            tuote4.setNimi("V8-moottori");
+            tuote4.setNimi("Artek-jakkara");
             tuote4.setTyyppi(Tuotetyypit.MYYNTI_EU_ALV);
-            tuote4.setHinta(12959.0);
+            tuote4.setHinta(945.0);
             	
-	    // Luodaan uusi lasku ja lisätään tuotteet
+            // Luodaan uusi lasku ja lisätään tuotteet
             Lasku lasku = new Lasku();
             lasku.lisaaTuote(tuote1);
             lasku.lisaaTuote(tuote2);
@@ -58,6 +58,7 @@ public class DecisionTableTest {
             kSession.insert(tuote4);
             
             // Käynnistetään sääntömoottori
+            kSession.getAgenda().getAgendaGroup("alvlaskenta").setFocus();
             kSession.fireAllRules();
             
             // Lasketaan laskun summa uudelleen ALVien kanssa
