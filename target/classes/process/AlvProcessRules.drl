@@ -1,37 +1,38 @@
 package com.sample
  
 import data.Tuote;
-import data.Tuotetyypit;
+import data.Tuotetyyppi;
+import data.AlvTiedot;
 
 
 rule "Luokka 1: ALV-prosentti 24"
 ruleflow-group "alvlaskenta"
     when
-        tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA1)
+        tuote : Tuote( tyyppi == AlvTiedot.LUOKKA1)
     then
-        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA1_KERROIN));
+        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * AlvTiedot.LUOKKA1_KERROIN));
 end
 
 rule "Luokka 2: ALV-prosentti 14"
 ruleflow-group "alvlaskenta"
     when 
-        tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA2)
+        tuote : Tuote( tyyppi == AlvTiedot.LUOKKA2)
     then
-    	tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA2_KERROIN)); 
+    	tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * AlvTiedot.LUOKKA2_KERROIN)); 
 end
 
 rule "Luokka 3: ALV-prosentti 10"
 ruleflow-group "alvlaskenta"
     when
-        tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA3)
+        tuote : Tuote( tyyppi == AlvTiedot.LUOKKA3)
     then
-        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA3_KERROIN));
+        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * AlvTiedot.LUOKKA3_KERROIN));
 end
 
 rule "Luokka 4: ALV-prosentti 0"
 ruleflow-group "alvlaskenta"
     when
-        tuote : Tuote( tyyppi == Tuotetyypit.LUOKKA4)
+        tuote : Tuote( tyyppi == AlvTiedot.LUOKKA4)
     then
-        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * Tuotetyypit.LUOKKA4_KERROIN));
+        tuote.setHinta(tuote.getHinta() + (tuote.getHinta() * AlvTiedot.LUOKKA4_KERROIN));
 end

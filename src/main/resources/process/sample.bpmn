@@ -20,7 +20,7 @@
     <endEvent id="_3" >
         <terminateEventDefinition />
     </endEvent>
-    <businessRuleTask id="_jbpm-unique-3" name="Rule" g:ruleFlowGroup="alvlaskenta" >
+    <businessRuleTask id="_jbpm-unique-3" name="Rules" g:ruleFlowGroup="alvlaskenta" >
       <ioSpecification>
         <inputSet>
         </inputSet>

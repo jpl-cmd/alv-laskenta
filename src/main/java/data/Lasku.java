@@ -1,11 +1,13 @@
 package data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Lasku {
 
 	private ArrayList<Tuote> tuotteet;
 	private double summa;
+	private LocalDate ostopaiva;
 	
 	public Lasku() {
 		this.tuotteet = new ArrayList<Tuote>();
@@ -39,6 +41,14 @@ public class Lasku {
 		}
 		
 		this.summa = summa;
+	}
+
+	public LocalDate getOstopaiva() {
+		return ostopaiva;
+	}
+
+	public void setOstopaiva(LocalDate ostopaiva) {
+		this.ostopaiva = ostopaiva;
 	}
 	
 	
