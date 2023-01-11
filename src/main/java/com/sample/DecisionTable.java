@@ -22,22 +22,22 @@ public class DecisionTable {
         	// Tuotteiden alustaminen
             Tuote tuote1 = new Tuote();
             tuote1.setNimi("Samsung-televisio");
-            tuote1.setTyyppi(Tuotetyyppi.YLEINEN);
+            tuote1.setTuotetyyppi(Tuotetyyppi.YLEINEN);
             tuote1.setHinta(500.0);
             
             Tuote tuote2 = new Tuote();
             tuote2.setNimi("Valio-maito");
-            tuote2.setTyyppi(Tuotetyyppi.ELINTARVIKE);
+            tuote2.setTuotetyyppi(Tuotetyyppi.ELINTARVIKE);
             tuote2.setHinta(2.5);
             
             Tuote tuote3 = new Tuote();
             tuote3.setNimi("Kalevala");
-            tuote3.setTyyppi(Tuotetyyppi.KIRJA);
+            tuote3.setTuotetyyppi(Tuotetyyppi.KIRJA);
             tuote3.setHinta(34.95);
             
             Tuote tuote4 = new Tuote();
             tuote4.setNimi("Artek-jakkara");
-            tuote4.setTyyppi(Tuotetyyppi.MYYNTI_EU_ALV);
+            tuote4.setTuotetyyppi(Tuotetyyppi.MYYNTI_EU_ALV);
             tuote4.setHinta(945.0);
             	
             // Luodaan uusi lasku ja lisätään tuotteet

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="alvprosessi" name="alvprosessi" >
+
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-4" name="Start"  isInterrupting="false">
+    </startEvent>
+    <endEvent id="_jbpm-unique-5" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <businessRuleTask id="_jbpm-unique-7" name="alvluokitus" g:ruleFlowGroup="alvluokitus" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <scriptTask id="_jbpm-unique-11" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Prosessi alkaa");</script>
+    </scriptTask>
+    <businessRuleTask id="_jbpm-unique-1" name="alvprosentti" g:ruleFlowGroup="alvprosentti" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-5" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-11-_jbpm-unique-7" sourceRef="_jbpm-unique-11" targetRef="_jbpm-unique-7" />
+    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-11" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-11" />
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-1" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-1" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="alvprosessi" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
+        <dc:Bounds x="24" y="191" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
+        <dc:Bounds x="524" y="156" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="260" y="200" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-11" >
+        <dc:Bounds x="126" y="211" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
+        <dc:Bounds x="410" y="258" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-5" >
+        <di:waypoint x="450" y="282" />
+        <di:waypoint x="548" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-11-_jbpm-unique-7" >
+        <di:waypoint x="166" y="235" />
+        <di:waypoint x="300" y="224" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-11" >
+        <di:waypoint x="48" y="215" />
+        <di:waypoint x="166" y="235" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-1" >
+        <di:waypoint x="300" y="224" />
+        <di:waypoint x="450" y="282" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

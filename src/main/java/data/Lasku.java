@@ -7,6 +7,7 @@ public class Lasku {
 
 	private ArrayList<Tuote> tuotteet;
 	private double summa;
+	private double alvSumma;
 	private LocalDate ostopaiva;
 	
 	public Lasku() {
@@ -34,6 +35,22 @@ public class Lasku {
 		this.summa = summa;
 	}
 	
+	public double getAlvsumma() {
+		return alvSumma;
+	}
+
+	public void setAlvsumma(double alvsumma) {
+		this.alvSumma = alvsumma;
+	}
+	
+	public LocalDate getOstopaiva() {
+		return ostopaiva;
+	}
+
+	public void setOstopaiva(LocalDate ostopaiva) {
+		this.ostopaiva = ostopaiva;
+	}
+	
 	public void laskeSumma() {
 		double summa = 0;
 		for(Tuote tuote : tuotteet) {
@@ -42,14 +59,16 @@ public class Lasku {
 		
 		this.summa = summa;
 	}
-
-	public LocalDate getOstopaiva() {
-		return ostopaiva;
+	
+	public void laskeAlvSumma() {
+		double alvsumma = 0;
+		for(Tuote tuote : tuotteet) {
+			alvsumma += (tuote.getHinta() + (tuote.getHinta() * tuote.getAlvprosentti()));
+		}
+		
+		this.alvSumma = alvsumma;
 	}
-
-	public void setOstopaiva(LocalDate ostopaiva) {
-		this.ostopaiva = ostopaiva;
-	}
+	
 	
 	
 	

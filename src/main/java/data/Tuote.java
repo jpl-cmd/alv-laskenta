@@ -6,9 +6,11 @@ import java.time.LocalDate;
 public class Tuote {
 	
 	private String nimi;
-	private int tyyppi;
+	private Tuotetyyppi tuotetyyppi;
 	private double hinta;
 	private LocalDate ostopaiva;
+	private Alvluokitus alvluokitus;
+	private double alvprosentti;
 	
 	public String getNimi() {
 		return nimi;
@@ -16,11 +18,11 @@ public class Tuote {
 	public void setNimi(String nimi) {
 		this.nimi = nimi;
 	}
-	public int getTyyppi() {
-		return tyyppi;
+	public Tuotetyyppi getTuotetyyppi() {
+		return tuotetyyppi;
 	}
-	public void setTyyppi(int tyyppi) {
-		this.tyyppi = tyyppi;
+	public void setTuotetyyppi(Tuotetyyppi tyyppi) {
+		this.tuotetyyppi = tyyppi;
 	}
 	public double getHinta() {
 		return hinta;
@@ -34,6 +36,18 @@ public class Tuote {
 	public void setOstopaiva(LocalDate ostopaiva) {
 		this.ostopaiva = ostopaiva;
 	}
+	public Alvluokitus getAlvluokitus() {
+		return alvluokitus;
+	}
+	public void setAlvluokitus(Alvluokitus alvluokitus) {
+		this.alvluokitus = alvluokitus;
+	}
+	public double getAlvprosentti() {
+		return alvprosentti;
+	}
+	public void setAlvprosentti(double alvprosentti) {
+		this.alvprosentti = alvprosentti;
+	}
 	
-
+	
 }

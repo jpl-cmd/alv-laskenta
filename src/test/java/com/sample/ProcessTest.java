@@ -12,7 +12,7 @@ import data.Lasku;
 import data.Tuote;
 import data.Tuotetyyppi;
 
-public class DecisionTableTest {
+public class ProcessTest {
 
 	
 	KieServices ks;
@@ -24,7 +24,7 @@ public class DecisionTableTest {
 	void alustus() {
 		this.ks = KieServices.Factory.get();
 		this.kContainer = ks.getKieClasspathContainer();
-		this.kSession = kContainer.newKieSession("ksession-dtables");
+		this.kSession = kContainer.newKieSession("ksession-process");
 		
 		// Tuotteiden alustaminen
         Tuote tuote1 = new Tuote();
@@ -58,40 +58,35 @@ public class DecisionTableTest {
         
         System.out.printf("Laskun summa (ei sis. AlVia): %.2f \n",lasku.getSumma());
         
-        // Tuotteet syötetään sääntömoottoriin, joka laskee uudet hinnat sääntöjen perusteella
-        for(Tuote tuote : lasku.getTuotteet()) {
-        	 kSession.insert(tuote);
-        }
+       
         
-        kSession.getAgenda().getAgendaGroup("alvlaskenta").setFocus();
 	}
 	
 	@Test
-	void testDate() {
+	void testProcess() {
 		 // Asetetaan tuotteille ostopäivä
         for(Tuote tuote : lasku.getTuotteet()) {
         	tuote.setOstopaiva(LocalDate.now());
         }
-        kSession.fireAllRules();
-        lasku.laskeSumma();
-        assertEquals(1606.295, lasku.getSumma());
-	}
-	
-	@Test
-	void testDateUusi() {
-		 // Asetetaan tuotteille ostopäivä
+        // Tuotteet syötetään sääntömoottoriin, joka laskee uudet hinnat sääntöjen perusteella
         for(Tuote tuote : lasku.getTuotteet()) {
-        	tuote.setOstopaiva(LocalDate.parse("2023-12-01"));
+        	 kSession.insert(tuote);
         }
+        kSession.startProcess("alvprosessi");
         kSession.fireAllRules();
-        lasku.laskeSumma();
-        assertEquals(1731.644, lasku.getSumma());
-       
+        lasku.laskeAlvSumma();
+        assertEquals(1606.295, lasku.getAlvsumma());
 	}
 	
 	@AfterEach
 	void print() {
-		System.out.printf("Laskun summa (sis. ALVin): %.2f \n",lasku.getSumma());
+		for(Tuote tuote : lasku.getTuotteet()) {
+        	System.out.println(tuote.getAlvluokitus());
+        }
+		for(Tuote tuote : lasku.getTuotteet()) {
+        	System.out.println(tuote.getAlvprosentti());
+        }
+		System.out.printf("Laskun summa (sis. ALVin): %.2f \n",lasku.getAlvsumma());
 	}
 	
 }
