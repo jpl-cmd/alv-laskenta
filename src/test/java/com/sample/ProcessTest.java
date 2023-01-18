@@ -1,13 +1,22 @@
 package com.sample;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
+
+import org.drools.decisiontable.DecisionTableProviderImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.kie.api.KieServices;
+import org.kie.api.io.Resource;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.internal.io.ResourceFactory;
+
+import data.Alvluokitus;
 import data.Lasku;
 import data.Tuote;
 import data.Tuotetyyppi;
@@ -54,20 +63,43 @@ public class ProcessTest {
         lasku.lisaaTuote(tuote3);
         lasku.lisaaTuote(tuote4);
         
+        // HUOM: Droolsissa ei voi käsitellä muuttujaa, jota ei ole alustettu (null)
+        for(Tuote tuote : lasku.getTuotteet()) {
+        	tuote.setAlvluokitus(Alvluokitus.PLACEHOLDER);
+        }
+        
         lasku.laskeSumma();
         
         System.out.printf("Laskun summa (ei sis. AlVia): %.2f \n",lasku.getSumma());
         
-       
+        //printDRL("Alvprosentti.xls");
         
 	}
 	
 	@Test
-	void testProcess() {
+	void testProcess2023() {
 		 // Asetetaan tuotteille ostopäivä
         for(Tuote tuote : lasku.getTuotteet()) {
         	tuote.setOstopaiva(LocalDate.now());
         }
+        
+        // Tuotteet syötetään sääntömoottoriin, joka laskee uudet hinnat sääntöjen perusteella
+        for(Tuote tuote : lasku.getTuotteet()) {
+        	 kSession.insert(tuote);
+        }
+        kSession.startProcess("alvprosessi");
+        kSession.fireAllRules();
+        lasku.laskeAlvSumma();
+        assertEquals(1731.644, lasku.getAlvsumma());
+	}
+	
+	@Test
+	void testProcess2011() {
+		 // Asetetaan tuotteille ostopäivä
+        for(Tuote tuote : lasku.getTuotteet()) {
+        	tuote.setOstopaiva(LocalDate.parse("2011-01-01"));
+        }
+        
         // Tuotteet syötetään sääntömoottoriin, joka laskee uudet hinnat sääntöjen perusteella
         for(Tuote tuote : lasku.getTuotteet()) {
         	 kSession.insert(tuote);
@@ -80,13 +112,25 @@ public class ProcessTest {
 	
 	@AfterEach
 	void print() {
-		for(Tuote tuote : lasku.getTuotteet()) {
-        	System.out.println(tuote.getAlvluokitus());
-        }
-		for(Tuote tuote : lasku.getTuotteet()) {
-        	System.out.println(tuote.getAlvprosentti());
-        }
+//		for(Tuote tuote : lasku.getTuotteet()) {
+//        	System.out.println(tuote.getAlvluokitus());
+//        }
+//		for(Tuote tuote : lasku.getTuotteet()) {
+//        	System.out.println(tuote.getAlvprosentti());
+//        }
 		System.out.printf("Laskun summa (sis. ALVin): %.2f \n",lasku.getAlvsumma());
+	}
+	
+	void printDRL(String polku) {
+		Resource dt 
+        = ResourceFactory
+          .newClassPathResource(polku,
+            getClass());
+
+        DecisionTableProviderImpl decisionTableProvider = new DecisionTableProviderImpl();
+       
+        String drl = decisionTableProvider.loadFromResource(dt, null);
+        System.out.println("\n" + drl + "\n");
 	}
 	
 }

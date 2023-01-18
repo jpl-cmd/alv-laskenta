@@ -15,71 +15,60 @@
   <process processType="Private" isExecutable="true" id="alvprosessi" name="alvprosessi" >
 
     <!-- nodes -->
-    <startEvent id="_jbpm-unique-4" name="Start"  isInterrupting="false">
+    <startEvent id="_jbpm-unique-1" name="Start"  isInterrupting="false">
     </startEvent>
-    <endEvent id="_jbpm-unique-5" name="End" >
+    <businessRuleTask id="_jbpm-unique-2" name="Rule" g:ruleFlowGroup="alvluokitus" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-3" name="Rule" g:ruleFlowGroup="alvprosentti" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <endEvent id="_jbpm-unique-4" name="End" >
         <terminateEventDefinition />
     </endEvent>
-    <businessRuleTask id="_jbpm-unique-7" name="alvluokitus" g:ruleFlowGroup="alvluokitus" >
-      <ioSpecification>
-        <inputSet>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-    </businessRuleTask>
-    <scriptTask id="_jbpm-unique-11" name="Script" scriptFormat="http://www.java.com/java" >
-      <script>System.out.println("Prosessi alkaa");</script>
-    </scriptTask>
-    <businessRuleTask id="_jbpm-unique-1" name="alvprosentti" g:ruleFlowGroup="alvprosentti" >
-      <ioSpecification>
-        <inputSet>
-        </inputSet>
-        <outputSet>
-        </outputSet>
-      </ioSpecification>
-    </businessRuleTask>
 
     <!-- connections -->
-    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-5" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-5" />
-    <sequenceFlow id="_jbpm-unique-11-_jbpm-unique-7" sourceRef="_jbpm-unique-11" targetRef="_jbpm-unique-7" />
-    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-11" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-11" />
-    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-1" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-1" />
+    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-2" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-2" />
+    <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-3" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-3" />
+    <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-4" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-4" />
 
   </process>
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="alvprosessi" >
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
-        <dc:Bounds x="24" y="191" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
-        <dc:Bounds x="524" y="156" width="48" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
-        <dc:Bounds x="260" y="200" width="80" height="48" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-11" >
-        <dc:Bounds x="126" y="211" width="80" height="48" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
-        <dc:Bounds x="410" y="258" width="80" height="48" />
+        <dc:Bounds x="100" y="100" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-5" >
-        <di:waypoint x="450" y="282" />
-        <di:waypoint x="548" y="180" />
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
+        <dc:Bounds x="295" y="197" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
+        <dc:Bounds x="500" y="222" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
+        <dc:Bounds x="727" y="231" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-2" >
+        <di:waypoint x="124" y="124" />
+        <di:waypoint x="335" y="221" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-11-_jbpm-unique-7" >
-        <di:waypoint x="166" y="235" />
-        <di:waypoint x="300" y="224" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-3" >
+        <di:waypoint x="335" y="221" />
+        <di:waypoint x="540" y="246" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-11" >
-        <di:waypoint x="48" y="215" />
-        <di:waypoint x="166" y="235" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-1" >
-        <di:waypoint x="300" y="224" />
-        <di:waypoint x="450" y="282" />
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-4" >
+        <di:waypoint x="540" y="246" />
+        <di:waypoint x="751" y="255" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
