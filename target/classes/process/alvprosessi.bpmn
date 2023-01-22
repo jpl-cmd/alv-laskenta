@@ -15,9 +15,9 @@
   <process processType="Private" isExecutable="true" id="alvprosessi" name="alvprosessi" >
 
     <!-- nodes -->
-    <startEvent id="_jbpm-unique-1" name="Start"  isInterrupting="false">
+    <startEvent id="_jbpm-unique-2" name="Start"  isInterrupting="false">
     </startEvent>
-    <businessRuleTask id="_jbpm-unique-2" name="Rule" g:ruleFlowGroup="alvluokitus" >
+    <businessRuleTask id="_jbpm-unique-3" name="alvluokitus" g:ruleFlowGroup="alvluokitus" >
       <ioSpecification>
         <inputSet>
         </inputSet>
@@ -25,7 +25,7 @@
         </outputSet>
       </ioSpecification>
     </businessRuleTask>
-    <businessRuleTask id="_jbpm-unique-3" name="Rule" g:ruleFlowGroup="alvprosentti" >
+    <businessRuleTask id="_jbpm-unique-4" name="alvprosentti" g:ruleFlowGroup="alvprosentti" >
       <ioSpecification>
         <inputSet>
         </inputSet>
@@ -33,42 +33,58 @@
         </outputSet>
       </ioSpecification>
     </businessRuleTask>
-    <endEvent id="_jbpm-unique-4" name="End" >
+    <businessRuleTask id="_jbpm-unique-5" name="varastokapasiteetti" g:ruleFlowGroup="varastokapasiteetti" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <endEvent id="_jbpm-unique-6" name="End" >
         <terminateEventDefinition />
     </endEvent>
 
     <!-- connections -->
-    <sequenceFlow id="_jbpm-unique-1-_jbpm-unique-2" sourceRef="_jbpm-unique-1" targetRef="_jbpm-unique-2" />
     <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-3" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-3" />
     <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-4" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-4" />
+    <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-5" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-5" />
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6" />
 
   </process>
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="alvprosessi" >
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-1" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
         <dc:Bounds x="100" y="100" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-2" >
-        <dc:Bounds x="295" y="197" width="80" height="48" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-3" >
-        <dc:Bounds x="500" y="222" width="80" height="48" />
+        <dc:Bounds x="227" y="110" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-4" >
-        <dc:Bounds x="727" y="231" width="48" height="48" />
+        <dc:Bounds x="384" y="115" width="80" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-1-_jbpm-unique-2" >
-        <di:waypoint x="124" y="124" />
-        <di:waypoint x="335" y="221" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-5" >
+        <dc:Bounds x="534" y="112" width="116" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
+        <dc:Bounds x="785" y="133" width="48" height="48" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-3" >
-        <di:waypoint x="335" y="221" />
-        <di:waypoint x="540" y="246" />
+        <di:waypoint x="124" y="124" />
+        <di:waypoint x="267" y="134" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-3-_jbpm-unique-4" >
-        <di:waypoint x="540" y="246" />
-        <di:waypoint x="751" y="255" />
+        <di:waypoint x="267" y="134" />
+        <di:waypoint x="424" y="139" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-4-_jbpm-unique-5" >
+        <di:waypoint x="424" y="139" />
+        <di:waypoint x="592" y="136" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-6" >
+        <di:waypoint x="592" y="136" />
+        <di:waypoint x="809" y="157" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

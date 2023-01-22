@@ -20,6 +20,7 @@ import data.Alvluokitus;
 import data.Lasku;
 import data.Tuote;
 import data.Tuotetyyppi;
+import data.Varasto;
 
 public class ProcessTest {
 
@@ -55,18 +56,13 @@ public class ProcessTest {
         tuote4.setNimi("Artek-jakkara");
         tuote4.setTuotetyyppi(Tuotetyyppi.MYYNTI_EU_ALV);
         tuote4.setHinta(945.0);
-        	
+        
         // Luodaan uusi lasku ja lisätään tuotteet
         this.lasku = new Lasku();
         lasku.lisaaTuote(tuote1);
         lasku.lisaaTuote(tuote2);
         lasku.lisaaTuote(tuote3);
         lasku.lisaaTuote(tuote4);
-        
-        // HUOM: Droolsissa ei voi käsitellä muuttujaa, jota ei ole alustettu (null)
-        for(Tuote tuote : lasku.getTuotteet()) {
-        	tuote.setAlvluokitus(Alvluokitus.PLACEHOLDER);
-        }
         
         lasku.laskeSumma();
         
@@ -119,6 +115,11 @@ public class ProcessTest {
 //        	System.out.println(tuote.getAlvprosentti());
 //        }
 		System.out.printf("Laskun summa (sis. ALVin): %.2f \n",lasku.getAlvsumma());
+		System.out.println("Varastokapasiteetti:"
+				+ "\n\tTelevisiot: " + Varasto.TELEVISIO
+				+ "\n\tMaito: " + Varasto.MAITO
+				+ "\n\tKirjat: " + Varasto.KIRJA
+				+ "\n\tJakkarat: " + Varasto.JAKKARA);
 	}
 	
 	void printDRL(String polku) {
