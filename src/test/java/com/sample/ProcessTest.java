@@ -1,11 +1,7 @@
 package com.sample;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
-
 import org.drools.decisiontable.DecisionTableProviderImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +11,8 @@ import org.kie.api.io.Resource;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
-
-import data.Alvluokitus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import data.Lasku;
 import data.Tuote;
 import data.Tuotetyyppi;
@@ -24,7 +20,7 @@ import data.Varasto;
 
 public class ProcessTest {
 
-	
+	private static Logger logger = LoggerFactory.getLogger(ProcessTest.class);
 	KieServices ks;
     KieContainer kContainer;
 	KieSession kSession;
@@ -66,8 +62,8 @@ public class ProcessTest {
         
         lasku.laskeSumma();
         
-        System.out.printf("Laskun summa (ei sis. AlVia): %.2f \n",lasku.getSumma());
-        
+        //System.out.printf("Laskun summa (ei sis. AlVia): %.2f \n",lasku.getSumma());
+        logger.info("Summa ilman alvia: " + lasku.getSumma());
         //printDRL("Alvprosentti.xls");
         
 	}

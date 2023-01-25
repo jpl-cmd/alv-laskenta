@@ -14,6 +14,10 @@
 
   <process processType="Private" isExecutable="true" id="alvprosessi" name="alvprosessi" >
 
+    <extensionElements>
+     <tns:import name="data.Lasku" />
+     <tns:global identifier="lasku" type="data.Lasku" />
+    </extensionElements>
     <!-- nodes -->
     <startEvent id="_jbpm-unique-2" name="Start"  isInterrupting="false">
     </startEvent>
@@ -44,12 +48,16 @@
     <endEvent id="_jbpm-unique-6" name="End" >
         <terminateEventDefinition />
     </endEvent>
+    <scriptTask id="_jbpm-unique-0" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println(kcontext.getVariable("Lasku"));</script>
+    </scriptTask>
 
     <!-- connections -->
     <sequenceFlow id="_jbpm-unique-2-_jbpm-unique-3" sourceRef="_jbpm-unique-2" targetRef="_jbpm-unique-3" />
     <sequenceFlow id="_jbpm-unique-3-_jbpm-unique-4" sourceRef="_jbpm-unique-3" targetRef="_jbpm-unique-4" />
     <sequenceFlow id="_jbpm-unique-4-_jbpm-unique-5" sourceRef="_jbpm-unique-4" targetRef="_jbpm-unique-5" />
-    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-6" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-6" />
+    <sequenceFlow id="_jbpm-unique-0-_jbpm-unique-6" sourceRef="_jbpm-unique-0" targetRef="_jbpm-unique-6" />
+    <sequenceFlow id="_jbpm-unique-5-_jbpm-unique-0" sourceRef="_jbpm-unique-5" targetRef="_jbpm-unique-0" />
 
   </process>
 
@@ -68,7 +76,10 @@
         <dc:Bounds x="534" y="112" width="116" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
-        <dc:Bounds x="785" y="133" width="48" height="48" />
+        <dc:Bounds x="769" y="110" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-0" >
+        <dc:Bounds x="745" y="218" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-2-_jbpm-unique-3" >
         <di:waypoint x="124" y="124" />
@@ -82,9 +93,13 @@
         <di:waypoint x="424" y="139" />
         <di:waypoint x="592" y="136" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-6" >
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-0-_jbpm-unique-6" >
+        <di:waypoint x="785" y="242" />
+        <di:waypoint x="793" y="134" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-5-_jbpm-unique-0" >
         <di:waypoint x="592" y="136" />
-        <di:waypoint x="809" y="157" />
+        <di:waypoint x="785" y="242" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
