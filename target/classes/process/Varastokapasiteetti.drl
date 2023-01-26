@@ -1,0 +1,39 @@
+package com.sample
+
+import data.Tuote;
+import data.Varasto;
+
+ruleflow-group "varastokapasiteetti"
+no-loop true
+
+rule "Varastokapasiteetti: Televisio"
+
+    when
+       $tuote: Tuote(getNimi().equals("Samsung-televisio"))
+    then
+		Varasto.TELEVISIO = Varasto.TELEVISIO - 1;
+end
+
+rule "Varastokapasiteetti: Maito"
+
+    when
+       $tuote: Tuote(getNimi().equals("Valio-maito"))
+    then
+		Varasto.MAITO = Varasto.MAITO - 1;
+end
+
+rule "Varastokapasiteetti: Kirja"
+
+    when
+       $tuote: Tuote(getNimi().equals("Kalevala"))
+    then
+		Varasto.KIRJA = Varasto.KIRJA - 1;
+end
+
+rule "Varastokapasiteetti: Jakkara"
+
+    when
+       $tuote: Tuote(getNimi().equals("Artek-jakkara"))
+    then
+		Varasto.JAKKARA = Varasto.JAKKARA - 1;
+end
