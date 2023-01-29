@@ -9,6 +9,7 @@ public class Lasku {
 	private double summa;
 	private double alvSumma;
 	private LocalDate ostopaiva;
+	private LaskunTila tila;
 	
 	public Lasku() {
 		this.tuotteet = new ArrayList<Tuote>();
@@ -51,6 +52,14 @@ public class Lasku {
 		this.ostopaiva = ostopaiva;
 	}
 	
+	public LaskunTila getTila() {
+		return tila;
+	}
+
+	public void setTila(LaskunTila tila) {
+		this.tila = tila;
+	}
+	
 	public void laskeSumma() {
 		double summa = 0;
 		for(Tuote tuote : tuotteet) {
@@ -68,6 +77,8 @@ public class Lasku {
 		
 		this.alvSumma = alvsumma;
 	}
+
+	
 	
 	
 	

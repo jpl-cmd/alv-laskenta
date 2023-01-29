@@ -14,6 +14,7 @@ import org.kie.internal.io.ResourceFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import data.Lasku;
+import data.LaskunTila;
 import data.Tuote;
 import data.Tuotetyyppi;
 import data.Varasto;
@@ -62,6 +63,8 @@ public class ProcessTest {
         
         lasku.laskeSumma();
         
+        lasku.setTila(LaskunTila.AVOIN);
+        kSession.insert(lasku);
         //System.out.printf("Laskun summa (ei sis. AlVia): %.2f \n",lasku.getSumma());
         logger.info("Summa ilman alvia: " + lasku.getSumma());
         //printDRL("Alvprosentti.xls");
@@ -79,6 +82,7 @@ public class ProcessTest {
         for(Tuote tuote : lasku.getTuotteet()) {
         	 kSession.insert(tuote);
         }
+        
         kSession.startProcess("alvprosessi");
         kSession.fireAllRules();
         lasku.laskeAlvSumma();
@@ -110,12 +114,18 @@ public class ProcessTest {
 //		for(Tuote tuote : lasku.getTuotteet()) {
 //        	System.out.println(tuote.getAlvprosentti());
 //        }
-		System.out.printf("Laskun summa (sis. ALVin): %.2f \n",lasku.getAlvsumma());
+		System.out.printf("Laskun summa (sis. ALVin): \n\t%.2f \n",lasku.getAlvsumma());
 		System.out.println("Varastokapasiteetti:"
 				+ "\n\tTelevisiot: " + Varasto.TELEVISIO
 				+ "\n\tMaito: " + Varasto.MAITO
 				+ "\n\tKirjat: " + Varasto.KIRJA
 				+ "\n\tJakkarat: " + Varasto.JAKKARA);
+		for(Tuote tuote: lasku.getTuotteet()) {
+			System.out.println("Tuotteen tiedot:"
+					+ "\n\tAlvluokitus: " + tuote.getAlvluokitus()
+					+ "\n\tAlvprosentti: " + tuote.getAlvprosentti());
+		}
+		System.out.println("Laskun tila:\n\t" + lasku.getTila());
 	}
 	
 	void printDRL(String polku) {
